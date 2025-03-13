@@ -10,6 +10,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <map>
+#include <array>
 
 #include "graph.hpp"
 
