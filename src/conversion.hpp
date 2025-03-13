@@ -12,8 +12,7 @@
 #include <algorithm>
 
 /* Converts string to number, returns "true" if string contains at least one digit and "false" if it doesn't contain any number */
-bool strToNum(const std::string str, size_t & value);
+bool strToNum(const std::string str, size_t &value);
 
 /* Converts string to pathfinding algorithm type */
-bool strToAlgoType(std::string str, SearchAlgorithmType & algoType);
-
+bool strToAlgoType(std::string str, SearchAlgorithmType &algoType);
