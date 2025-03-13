@@ -45,7 +45,8 @@ void GraphVisualisation::processInput(sf::Event &event)
         m_window.close();
 
     /* Display whole window again if screen resized */
-    else if (event.type == sf::Event::Resized) {
+    else if (event.type == sf::Event::Resized)
+    {
         this->reset();
         m_gameData.finished = false;
     }
@@ -55,7 +56,8 @@ void GraphVisualisation::processInput(sf::Event &event)
         m_window.close();
 
     /* Play/Pause if Space is pressed */
-    else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Space) {
+    else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Space)
+    {
         m_gameData.paused = !m_gameData.paused;
         if (m_gameData.paused)
             m_window.setTitle(m_screenTitle + " -  (PAUSED)");
@@ -64,24 +66,28 @@ void GraphVisualisation::processInput(sf::Event &event)
     }
 
     /* Change speed (Faster) */
-    else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::D) {
+    else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::D)
+    {
         m_visualisationSpeed = std::min(m_visualisationSpeed * 2, static_cast<size_t>(10000));
         this->changeSpeed(m_visualisationSpeed);
     }
 
     /* Change speed (Slower) */
-    else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::A) {
+    else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::A)
+    {
         m_visualisationSpeed = std::max(m_visualisationSpeed / 2, static_cast<size_t>(1));
         this->changeSpeed(m_visualisationSpeed);
     }
 
     /* Change batchSize (Higher) */
-    else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::E) {
+    else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::E)
+    {
         m_gameData.batchSize = std::min(m_gameData.batchSize * 2, static_cast<size_t>(10000));
     }
 
     /* Change batchSize (Lower) */
-    else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Q) {
+    else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Q)
+    {
 
         if (m_gameData.batchSize > 1)
             m_gameData.batchSize = std::max(m_gameData.batchSize / 2, static_cast<size_t>(1));
@@ -90,35 +96,41 @@ void GraphVisualisation::processInput(sf::Event &event)
     }
 
     /* Change ColorScheme */
-    else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::C) {
+    else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::C)
+    {
         m_gameData.visualStyle = (m_gameData.visualStyle + 1) % 2;
         this->resetAll();
     }
 
     /* Loop */
-    else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::L) {
+    else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::L)
+    {
         m_gameData.loop = !m_gameData.loop;
-        if (m_gameData.loop) {
+        if (m_gameData.loop)
+        {
             m_window.setTitle(m_screenTitle + " -  (LOOP)");
         } else
             m_window.setTitle(m_screenTitle);
     }
 
     /* Show just the shortes path*/
-    else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F) {
+    else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F)
+    {
         this->resetAll();
         m_visitedProgress = m_graph.m_visitedInOrder.size() + 1;
     }
 
     /* Change Algorithm */
-    else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::S) {
+    else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::S)
+    {
         m_gameData.state = (m_gameData.state + 1) % 5;
         this->resetAll();
         m_gameData.paused = false;
     }
 
     /* If R pressed, reset animation */
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+    {
         this->resetAll();
     }
 }
@@ -128,7 +140,8 @@ void GraphVisualisation::windowLoop(void)
 {
     /** If graph cannot be displayed*/
     m_graph.setUp(-1);
-    if (!this->showGraph()) {
+    if (!this->showGraph())
+    {
         m_graph.pathInfo();
         return;
     }
@@ -136,16 +149,20 @@ void GraphVisualisation::windowLoop(void)
     m_gameData.state = static_cast<int>(m_graph.m_algoType);
 
     /* Run until window is closed */
-    while (m_window.isOpen()) {
+    while (m_window.isOpen())
+    {
         /* Check for keyboard events and window closed events */
         sf::Event event;
-        while (m_window.pollEvent(event)) {
+        while (m_window.pollEvent(event))
+        {
             this->processInput(event);
         }
 
         /* Display the visualisation*/
-        if (!m_gameData.paused && !m_gameData.finished && !this->showBatch(m_gameData.batchSize, 0)) {
-            if (!this->showBatch(m_gameData.batchSize, 1)) {
+        if (!m_gameData.paused && !m_gameData.finished && !this->showBatch(m_gameData.batchSize, 0))
+        {
+            if (!this->showBatch(m_gameData.batchSize, 1))
+            {
                 m_graph.pathInfo();
                 m_gameData.finished = true;
             }
@@ -160,7 +177,8 @@ void GraphVisualisation::windowLoop(void)
 /** Updates title based on algorithm type */
 void GraphVisualisation::updateTitle(void)
 {
-    switch (m_graph.m_algoType) {
+    switch (m_graph.m_algoType)
+    {
         case SearchAlgorithmType::BFS:
             m_screenTitle = "Graph Visualisation - BFS";
             break;
@@ -209,7 +227,8 @@ bool GraphVisualisation::showBatch(size_t batchSize, bool renderType)
     sf::VertexArray tiles(sf::Quads, batchSize * 4 * 4);
     size_t vertexIndex = 0;
 
-    for (int i = 0; i < batchSize; i++) {
+    for (int i = 0; i < batchSize; i++)
+    {
         /* Displays visited steps */
         if (renderType == false)
             returnValue = this->showVisitedStep(tiles, vertexIndex);
@@ -219,7 +238,8 @@ bool GraphVisualisation::showBatch(size_t batchSize, bool renderType)
     }
 
     /* If there is anything to display */
-    if (vertexIndex != 0) {
+    if (vertexIndex != 0)
+    {
         m_window.draw(tiles);
         m_window.display();
     }
@@ -244,7 +264,8 @@ bool GraphVisualisation::showVisitedStep(sf::VertexArray &tiles, size_t &vertexI
     sf::Color color(255, 255, 255, 255);
 
     /* If not start position */
-    if (x != m_graph.m_startPos) {
+    if (x != m_graph.m_startPos)
+    {
 
         int r = m_gameData.colorSchemes[m_gameData.visualStyle].step.r;
         int g = m_gameData.colorSchemes[m_gameData.visualStyle].step.g;
@@ -262,9 +283,11 @@ bool GraphVisualisation::showVisitedStep(sf::VertexArray &tiles, size_t &vertexI
     }
 
     /* If position opened any vertices */
-    if (m_graph.m_opened.find(x) != m_graph.m_opened.end()) {
+    if (m_graph.m_opened.find(x) != m_graph.m_opened.end())
+    {
         /* For every vertex that x opened */
-        for (const auto &y: m_graph.m_opened[x]) {
+        for (const auto &y: m_graph.m_opened[x])
+        {
             int r = m_gameData.colorSchemes[m_gameData.visualStyle].opened.r;
             int g = m_gameData.colorSchemes[m_gameData.visualStyle].opened.g;
             int b = m_gameData.colorSchemes[m_gameData.visualStyle].opened.b;
@@ -301,7 +324,8 @@ bool GraphVisualisation::showPathStep(sf::VertexArray &tiles, size_t &vertexInde
     Position x = m_graph.m_path[m_pathProgress++];
 
     /* If not start position */
-    if (x != m_graph.m_startPos) {
+    if (x != m_graph.m_startPos)
+    {
         int r = m_gameData.colorSchemes[m_gameData.visualStyle].path.r;
         int g = m_gameData.colorSchemes[m_gameData.visualStyle].path.g;
         int b = m_gameData.colorSchemes[m_gameData.visualStyle].path.b;
@@ -401,20 +425,27 @@ bool GraphVisualisation::showGraph(void)
     size_t vertexIndex = 0;
 
     /* Iterates through every vertex/position of graph and displays it accordingly */
-    for (auto x: m_graph.m_graph) {
-        for (auto y: x) {
+    for (auto x: m_graph.m_graph)
+    {
+        for (auto y: x)
+        {
             sf::Color color;
-            if (y == true) {
+            if (y == true)
+            {
                 r = m_gameData.colorSchemes[m_gameData.visualStyle].empty.r;
                 g = m_gameData.colorSchemes[m_gameData.visualStyle].empty.g;
                 b = m_gameData.colorSchemes[m_gameData.visualStyle].empty.b;
                 color = (sf::Color(r, g, b, 255));
-            } else if (y == false) {
+            } 
+            else if (y == false)
+            {
                 r = m_gameData.colorSchemes[m_gameData.visualStyle].wall.r;
                 g = m_gameData.colorSchemes[m_gameData.visualStyle].wall.g;
                 b = m_gameData.colorSchemes[m_gameData.visualStyle].wall.b;
                 color = (sf::Color(r, g, b, 255));
-            } else {
+            } 
+            else
+            {
                 color = (sf::Color(102, 255, 102, 255));
             }
 

@@ -29,13 +29,15 @@ Graph::Graph(SearchAlgorithmType algoType, const std::string filePath)
     /* 0 - Wall, 1 - Empty, 2 - Tree */
     std::string line;
     std::istringstream parseLine(line);
-    while (std::getline(inputFile, line)) {
+    while (std::getline(inputFile, line))
+    {
         /* Break when end of maze */
         if (line[0] == 's')
             break;
 
         std::vector<int> graph_row;
-        for (char x: line) {
+        for (char x: line)
+        {
             if (std::tolower(x) == 'x')
                 graph_row.push_back(0);
             else if (std::tolower(x) == ' ')
@@ -67,7 +69,8 @@ std::vector<Position> Graph::Adjacent(Position v)
     /* Left */
     x = v.first - 1;
     y = v.second;
-    if (x >= 0) {
+    if (x >= 0)
+    {
         //std::cout << x << " " << y << std::endl;
         if (m_graph[y][x] == true)
             positions.push_back(Position(x, y));
@@ -76,7 +79,8 @@ std::vector<Position> Graph::Adjacent(Position v)
     /* Right */
     x = v.first + 1;
     y = v.second;
-    if (x < (int) m_graph[v.second].size()) {
+    if (x < (int) m_graph[v.second].size())
+    {
         if (m_graph[y][x] == true)
             positions.push_back(Position(x, y));
     }
@@ -84,7 +88,8 @@ std::vector<Position> Graph::Adjacent(Position v)
     /* Up */
     x = v.first;
     y = v.second - 1;
-    if (y >= 0) {
+    if (y >= 0)
+    {
         if (m_graph[y][x] == true)
             positions.push_back(Position(x, y));
     }
@@ -92,12 +97,14 @@ std::vector<Position> Graph::Adjacent(Position v)
     /* Down */
     x = v.first;
     y = v.second + 1;
-    if (y < (int) m_graph.size()) {
+    if (y < (int) m_graph.size())
+    {
         if (m_graph[y][x] == true)
             positions.push_back(Position(x, y));
     }
 
-    for (auto x: positions) {
+    for (auto x: positions)
+    {
         if (x.first < 0 || x.second < 0 || x.first > 511 || x.second > 511)
             std::cout << x.first << " " << x.second << std::endl;
     }
@@ -123,17 +130,21 @@ void Graph::BFS(void)
     /* Stops the loop when end position is found */
     bool breakFlag = false;
 
-    while (!queue.empty() && !breakFlag) {
+    while (!queue.empty() && !breakFlag)
+    {
         v = queue.front();
         queue.pop();
 
-        for (Position w: this->Adjacent(v)) {
-            if (visited.find(w) == visited.end()) {
+        for (Position w: this->Adjacent(v))
+        {
+            if (visited.find(w) == visited.end())
+            {
                 visited[w] = true;
                 queue.push(w);
                 m_visitedInOrder.push_back(w);
                 predecessor[w] = v;
-                if (w == m_endPos) {
+                if (w == m_endPos)
+                {
                     breakFlag = true;
                     break;
                 }
@@ -152,7 +163,8 @@ void Graph::BFS(void)
 
     std::vector<Position> reversePath;
     m_path.push_back(pos);
-    while (predecessor[pos] != Position(-1, -1)) {
+    while (predecessor[pos] != Position(-1, -1))
+    {
         pos = predecessor[pos];
         m_path.push_back(pos);
     }
@@ -180,18 +192,22 @@ void Graph::DFS(void)
     /* Stops the loop when end position is found */
     bool breakFlag = false;
 
-    while (!stack.empty() && !breakFlag) {
+    while (!stack.empty() && !breakFlag)
+    {
         v = stack.top();
         stack.pop();
 
         visited[v] = true;
         m_visitedInOrder.push_back(v);
 
-        for (Position w: Adjacent(v)) {
-            if (visited.find(w) == visited.end()) {
+        for (Position w: Adjacent(v))
+        {
+            if (visited.find(w) == visited.end())
+            {
                 stack.push(w);
                 predecessor[w] = v;
-                if (w == m_endPos) {
+                if (w == m_endPos)
+                {
                     breakFlag = true;
                     break;
                 }
@@ -211,7 +227,8 @@ void Graph::DFS(void)
 
     std::vector<Position> reversePath;
     m_path.push_back(pos);
-    while (predecessor[pos] != Position(-1, -1)) {
+    while (predecessor[pos] != Position(-1, -1))
+    {
         pos = predecessor[pos];
         m_path.push_back(pos);
     }
@@ -261,16 +278,20 @@ void Graph::RandomSearch(void)
     /* Stops the loop when end position is found */
     bool breakFlag = false;
 
-    while (!queue.empty() && !breakFlag) {
+    while (!queue.empty() && !breakFlag)
+    {
         v = queue.top().first;
         queue.pop();
-        for (Position w: Adjacent(v)) {
-            if (visited.find(w) == visited.end()) {
+        for (Position w: Adjacent(v))
+        {
+            if (visited.find(w) == visited.end())
+            {
                 visited[w] = true;
                 queue.push({w, randomNum()});
                 m_visitedInOrder.push_back(w);
                 predecessor[w] = v;
-                if (w == m_endPos) {
+                if (w == m_endPos)
+                {
                     breakFlag = true;
                     break;
                 }
@@ -290,7 +311,8 @@ void Graph::RandomSearch(void)
 
     std::vector<Position> reversePath;
     m_path.push_back(pos);
-    while (predecessor[pos] != Position(-1, -1)) {
+    while (predecessor[pos] != Position(-1, -1))
+    {
         pos = predecessor[pos];
         m_path.push_back(pos);
     }
@@ -338,17 +360,21 @@ void Graph::GreedySearch(void)
     /* Stops the loop when end position is found */
     bool breakFlag = false;
 
-    while (!queue.empty() && !breakFlag) {
+    while (!queue.empty() && !breakFlag)
+    {
         v = queue.top().first;
         queue.pop();
-        for (Position w: Adjacent(v)) {
-            if (visited.find(w) == visited.end()) {
+        for (Position w: Adjacent(v))
+        {
+            if (visited.find(w) == visited.end())
+            {
                 visited[w] = true;
                 m_visitedInOrder.push_back(w);
                 predecessor[w] = v;
                 distance[w] = distance[v] + 1;
                 queue.push({w, heuristic(w, m_endPos)});
-                if (w == m_endPos) {
+                if (w == m_endPos)
+                {
                     breakFlag = true;
                     break;
                 }
@@ -368,7 +394,8 @@ void Graph::GreedySearch(void)
 
     std::vector<Position> reversePath;
     m_path.push_back(pos);
-    while (predecessor[pos] != Position(-1, -1)) {
+    while (predecessor[pos] != Position(-1, -1))
+    {
         pos = predecessor[pos];
         m_path.push_back(pos);
     }
@@ -398,17 +425,21 @@ void Graph::AStar(void)
     /* Stops the loop when end position is found */
     bool breakFlag = false;
 
-    while (!queue.empty() && !breakFlag) {
+    while (!queue.empty() && !breakFlag)
+    {
         v = queue.top().first;
         queue.pop();
-        for (Position w: Adjacent(v)) {
-            if (visited.find(w) == visited.end()) {
+        for (Position w: Adjacent(v))
+        {
+            if (visited.find(w) == visited.end())
+            {
                 visited[w] = true;
                 m_visitedInOrder.push_back(w);
                 predecessor[w] = v;
                 distance[w] = distance[v] + 1;
                 queue.push({w, distance[w] + 1.0 * heuristic(w, m_endPos)});
-                if (w == m_endPos) {
+                if (w == m_endPos)
+                {
                     breakFlag = true;
                     break;
                 }
@@ -428,7 +459,8 @@ void Graph::AStar(void)
 
     std::vector<Position> reversePath;
     m_path.push_back(pos);
-    while (predecessor[pos] != Position(-1, -1)) {
+    while (predecessor[pos] != Position(-1, -1))
+    {
         pos = predecessor[pos];
         m_path.push_back(pos);
     }
@@ -442,11 +474,13 @@ void Graph::setUp(int state)
     if (m_startPos == m_endPos)
         return;
 
-    if (state != -1) {
+    if (state != -1)
+    {
         m_algoType = static_cast<SearchAlgorithmType>(state);
     }
 
-    switch (m_algoType) {
+    switch (m_algoType)
+    {
         case SearchAlgorithmType::BFS:
             this->BFS();
             break;
@@ -468,8 +502,10 @@ void Graph::setUp(int state)
 /** Displays graph in STDOUT */
 void Graph::showGraphASCII()
 {
-    for (auto row: m_graph) {
-        for (auto x: row) {
+    for (auto row: m_graph)
+    {
+        for (auto x: row)
+        {
             if (x == false)
                 std::cout << 'x';
             else

@@ -13,7 +13,7 @@
 bool strToNum(const std::string str, size_t &value)
 {
     std::istringstream parse(str);
-	if (parse >> value)
+    if (parse >> value)
         return true;
 
     return false;

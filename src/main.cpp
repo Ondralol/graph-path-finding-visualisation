@@ -31,7 +31,8 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
 
     /* Correct amount of arguments, but no Visualisation Speed argument (optional) */
-    if (argc >= 3) {
+    if (argc >= 3)
+    {
         /* Converts arguments to correct format, exits if conversion fails, likely wrong input */
         if (!strToAlgoType(argv[1], algorithmType))
             return EXIT_FAILURE;
@@ -39,7 +40,8 @@ int main(int argc, char **argv)
     }
 
     /* Correct amount of arguments, even the Visualisation Speed argument */
-    if (argc == 4) {
+    if (argc == 4)
+    {
         /* Converts the input, exits if conversion fails */
         if (!strToNum(argv[3], visualisationSpeed))
             return EXIT_FAILURE;
