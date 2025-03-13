@@ -50,9 +50,9 @@ path that was found
     - New line that has format `end x, y`, where `x` and ``y`` and coordinates for ending position (need to be valid in your graph)
 - Here is and example of such format:
 ```
-####
-#  #
-####
+XXXX
+X  X
+XXXX
 start 1,1
 end 1,1
 ```
