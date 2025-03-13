@@ -15,7 +15,8 @@
 #include "graph.hpp"
 
 
-struct RGB {
+struct RGB 
+{
     int r;
     int g;
     int b;
@@ -24,7 +25,8 @@ struct RGB {
 };
 
 /** Color scheme for visualisation */
-struct ColorScheme {
+struct ColorScheme 
+{
     RGB wall;
     RGB empty;
     RGB step;
@@ -35,7 +37,8 @@ struct ColorScheme {
 };
 
 /** Handeling input */
-struct InputData {
+struct InputData 
+{
     bool finished = false;
     bool paused = false;
     int state;

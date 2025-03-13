@@ -237,7 +237,8 @@ void Graph::DFS(void)
 }
 
 /** Comparator for priorityQueue - using for RandomSearch */
-struct PriorityQueueComparatorInt {
+struct PriorityQueueComparatorInt 
+{
     bool operator()(const std::pair<Position, int> &a, const std::pair<Position, int> &b)
     {
         return a.second > b.second;
@@ -331,7 +332,8 @@ double heuristic(const Position &pos1, const Position &pos2)
 }
 
 /** Comparator for priorityQueue - using for A* and Greedy Search */
-struct PriorityQueueComparatorDouble {
+struct PriorityQueueComparatorDouble 
+{
     bool operator()(const std::pair<Position, double> &a, const std::pair<Position, double> &b)
     {
         return a.second > b.second;
