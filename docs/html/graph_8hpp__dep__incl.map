@@ -1,0 +1,9 @@
+<map id="src/graph.hpp" name="src/graph.hpp">
+<area shape="rect" id="node1" title="Class that manages graph and path finding using different algorithms." alt="" coords="241,5,352,32"/>
+<area shape="rect" id="node2" href="$conversion_8hpp.html" title="Consists of string to number function and string to algoritm type function." alt="" coords="23,80,167,107"/>
+<area shape="rect" id="node4" href="$main_8cpp.html" title=" " alt="" coords="172,155,277,181"/>
+<area shape="rect" id="node5" href="$graph_8cpp.html" title="Implementation of Graph class." alt="" coords="242,80,351,107"/>
+<area shape="rect" id="node6" href="$graphVisualisation_8cpp.html" title=" " alt="" coords="443,155,636,181"/>
+<area shape="rect" id="node7" href="$graphVisualisation_8hpp.html" title="Class that visualises the graph." alt="" coords="375,80,570,107"/>
+<area shape="rect" id="node3" href="$conversion_8cpp.html" title="Implementation of conversion functions." alt="" coords="5,155,148,181"/>
+</map>

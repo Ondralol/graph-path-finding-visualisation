@@ -1,0 +1,98 @@
+\hypertarget{graph_8hpp}{}\doxysection{src/graph.hpp File Reference}
+\label{graph_8hpp}\index{src/graph.hpp@{src/graph.hpp}}
+
+
+Class that manages graph and path finding using different algorithms.  
+
+
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for graph.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{graph_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{graph_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classGraph}{Graph}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{graph_8hpp_a8faac095f04735496f9200893ebe93cf}{Position}} = std\+::pair$<$ int, int $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{graph_8hpp_acfb661ce1e726f87934325474a753c6f}{Search\+Algorithm\+Type}} \{ \newline
+\mbox{\hyperlink{graph_8hpp_acfb661ce1e726f87934325474a753c6fa838fea3c1a3e8dd6c22fe9605a701668}{BFS}}
+, \mbox{\hyperlink{graph_8hpp_acfb661ce1e726f87934325474a753c6fac1bb62b63c65be3760b715faad0bdf8d}{DFS}}
+, \mbox{\hyperlink{graph_8hpp_acfb661ce1e726f87934325474a753c6fa9df32f1d41ae9ca3b761a36681bf2b51}{Random\+Search}}
+, \mbox{\hyperlink{graph_8hpp_acfb661ce1e726f87934325474a753c6fa3293e66c0bd99dbb2eea08c77c0b5c64}{Greedy\+Search}}
+, \newline
+\mbox{\hyperlink{graph_8hpp_acfb661ce1e726f87934325474a753c6fa5dd57ad2903b807a288f1519c98dfc29}{AStar}}
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that manages graph and path finding using different algorithms. 
+
+\begin{DoxyAuthor}{Author}
+Ondrej 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{graph_8hpp_a8faac095f04735496f9200893ebe93cf}\label{graph_8hpp_a8faac095f04735496f9200893ebe93cf}} 
+\index{graph.hpp@{graph.hpp}!Position@{Position}}
+\index{Position@{Position}!graph.hpp@{graph.hpp}}
+\doxysubsubsection{\texorpdfstring{Position}{Position}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{graph_8hpp_a8faac095f04735496f9200893ebe93cf}{Position}} =  std\+::pair$<$int, int$>$}
+
+Represents position in graph 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{graph_8hpp_acfb661ce1e726f87934325474a753c6f}\label{graph_8hpp_acfb661ce1e726f87934325474a753c6f}} 
+\index{graph.hpp@{graph.hpp}!SearchAlgorithmType@{SearchAlgorithmType}}
+\index{SearchAlgorithmType@{SearchAlgorithmType}!graph.hpp@{graph.hpp}}
+\doxysubsubsection{\texorpdfstring{SearchAlgorithmType}{SearchAlgorithmType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{graph_8hpp_acfb661ce1e726f87934325474a753c6f}{Search\+Algorithm\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BFS@{BFS}!graph.hpp@{graph.hpp}}\index{graph.hpp@{graph.hpp}!BFS@{BFS}}}\mbox{\Hypertarget{graph_8hpp_acfb661ce1e726f87934325474a753c6fa838fea3c1a3e8dd6c22fe9605a701668}\label{graph_8hpp_acfb661ce1e726f87934325474a753c6fa838fea3c1a3e8dd6c22fe9605a701668}} 
+BFS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DFS@{DFS}!graph.hpp@{graph.hpp}}\index{graph.hpp@{graph.hpp}!DFS@{DFS}}}\mbox{\Hypertarget{graph_8hpp_acfb661ce1e726f87934325474a753c6fac1bb62b63c65be3760b715faad0bdf8d}\label{graph_8hpp_acfb661ce1e726f87934325474a753c6fac1bb62b63c65be3760b715faad0bdf8d}} 
+DFS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RandomSearch@{RandomSearch}!graph.hpp@{graph.hpp}}\index{graph.hpp@{graph.hpp}!RandomSearch@{RandomSearch}}}\mbox{\Hypertarget{graph_8hpp_acfb661ce1e726f87934325474a753c6fa9df32f1d41ae9ca3b761a36681bf2b51}\label{graph_8hpp_acfb661ce1e726f87934325474a753c6fa9df32f1d41ae9ca3b761a36681bf2b51}} 
+Random\+Search&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GreedySearch@{GreedySearch}!graph.hpp@{graph.hpp}}\index{graph.hpp@{graph.hpp}!GreedySearch@{GreedySearch}}}\mbox{\Hypertarget{graph_8hpp_acfb661ce1e726f87934325474a753c6fa3293e66c0bd99dbb2eea08c77c0b5c64}\label{graph_8hpp_acfb661ce1e726f87934325474a753c6fa3293e66c0bd99dbb2eea08c77c0b5c64}} 
+Greedy\+Search&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AStar@{AStar}!graph.hpp@{graph.hpp}}\index{graph.hpp@{graph.hpp}!AStar@{AStar}}}\mbox{\Hypertarget{graph_8hpp_acfb661ce1e726f87934325474a753c6fa5dd57ad2903b807a288f1519c98dfc29}\label{graph_8hpp_acfb661ce1e726f87934325474a753c6fa5dd57ad2903b807a288f1519c98dfc29}} 
+AStar&\\
+\hline
+
+\end{DoxyEnumFields}

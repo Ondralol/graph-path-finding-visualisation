@@ -288,7 +288,11 @@ bool GraphVisualisation::showVisitedStep(sf::VertexArray &tiles, size_t &vertexI
         /* For every vertex that x opened */
         for (const auto &y: m_graph.m_opened[x])
         {
-            int r = m_gameData.colorSchemes[m_gameData.visualStyle].opened.r;
+            /* Dont overwrite end pos */
+						if (y == m_graph.m_endPos)
+							continue;
+
+						int r = m_gameData.colorSchemes[m_gameData.visualStyle].opened.r;
             int g = m_gameData.colorSchemes[m_gameData.visualStyle].opened.g;
             int b = m_gameData.colorSchemes[m_gameData.visualStyle].opened.b;
 

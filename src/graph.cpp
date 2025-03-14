@@ -331,15 +331,30 @@ double heuristic(const Position &pos1, const Position &pos2)
     //return std::sqrt(std::pow(pos1.first - pos2.first, 2) + std::pow(pos1.second - pos2.second, 2));
 }
 
-/** Comparator for priorityQueue - using for A* and Greedy Search */
-struct PriorityQueueComparatorDouble 
+struct TimestampedValue
 {
-    bool operator()(const std::pair<Position, double> &a, const std::pair<Position, double> &b)
-    {
-        return a.second > b.second;
-    }
+	TimestampedValue(double val, size_t time)
+	: value (val),
+		timestamp(time)
+		{};
+
+	double value;
+	size_t timestamp;
 };
 
+/** Comparator for priorityQueue - using for A* and Greedy Search */
+struct PriorityQueueComparatorTimestamped
+{
+  bool operator()(const std::pair<Position, TimestampedValue> &a, const std::pair<Position, TimestampedValue> &b)
+  {
+	   if (a.second.value == b.second.value)
+     {
+     		return a.second.timestamp > b.second.timestamp;
+		 }
+
+  	return a.second.value > b.second.value;
+  }
+};
 
 /** Implementation of Greedy algorithm using L2 Norm, saves the visited and opened vertices as well as path */
 void Graph::GreedySearch(void)
@@ -347,9 +362,10 @@ void Graph::GreedySearch(void)
     std::map<Position, bool> visited;
     std::map<Position, size_t> distance;
     std::map<Position, Position> predecessor;
-    std::priority_queue<std::pair<Position, double>, std::vector<std::pair<Position, double>>, PriorityQueueComparatorDouble> queue;
+    std::priority_queue<std::pair<Position, TimestampedValue>, std::vector<std::pair<Position, TimestampedValue>>, PriorityQueueComparatorTimestamped> queue;
+		size_t time = 0;
 
-    queue.push({m_startPos, 0});
+    queue.push({m_startPos, TimestampedValue(0.0, time++)});
 
     Position v;
 
@@ -374,7 +390,7 @@ void Graph::GreedySearch(void)
                 m_visitedInOrder.push_back(w);
                 predecessor[w] = v;
                 distance[w] = distance[v] + 1;
-                queue.push({w, heuristic(w, m_endPos)});
+                queue.push({w, TimestampedValue(heuristic(w, m_endPos), time++)});
                 if (w == m_endPos)
                 {
                     breakFlag = true;
@@ -410,46 +426,49 @@ void Graph::GreedySearch(void)
 void Graph::AStar(void)
 {
     std::map<Position, bool> visited;
-    std::map<Position, size_t> distance;
+    std::map<Position, size_t> gScore;
     std::map<Position, Position> predecessor;
-    std::priority_queue<std::pair<Position, double>, std::vector<std::pair<Position, double>>, PriorityQueueComparatorDouble> queue;
+    std::priority_queue<std::pair<Position, TimestampedValue>, std::vector<std::pair<Position, TimestampedValue>>, PriorityQueueComparatorTimestamped> queue;
+		size_t time = 0;
+		
+		gScore[m_startPos] = 0;
 
-    queue.push({m_startPos, 0});
+		queue.push({m_startPos, TimestampedValue(heuristic(m_startPos, m_endPos), time++)});
+		predecessor[m_startPos] = Position(-1, -1);
+		m_visitedInOrder.push_back(m_startPos);
 
-    Position v;
-
-    /* Optional */
-    m_visitedInOrder.push_back(m_startPos);
-    visited[m_startPos] = true;
-    predecessor[m_startPos] = Position(-1, -1);
-    distance[m_startPos] = 0;
-
-    /* Stops the loop when end position is found */
-    bool breakFlag = false;
-
-    while (!queue.empty() && !breakFlag)
+    while (!queue.empty())
     {
-        v = queue.top().first;
-        queue.pop();
-        for (Position w: Adjacent(v))
-        {
-            if (visited.find(w) == visited.end())
-            {
-                visited[w] = true;
-                m_visitedInOrder.push_back(w);
-                predecessor[w] = v;
-                distance[w] = distance[v] + 1;
-                queue.push({w, distance[w] + 1.0 * heuristic(w, m_endPos)});
-                if (w == m_endPos)
-                {
-                    breakFlag = true;
-                    break;
-                }
+			Position v = queue.top().first;
+			double test = queue.top().second.value;
+			queue.pop();
 
-                m_opened[v].push_back(w);
-            }
-        }
-    }
+			if (v == m_endPos)
+				break;
+			
+			if (visited[v])
+				continue;
+			
+			m_visitedInOrder.push_back(v);
+			m_opened[v].clear();
+			visited[v] = true;
+			
+			for (const Position & w: Adjacent(v))
+			{
+				if (visited[w])
+					continue;
+
+				size_t tentativeGScore = gScore[v] + 1;
+				if (!gScore.count(w) || tentativeGScore < gScore[w])
+				{
+					predecessor[w] = v;
+					gScore[w] = tentativeGScore;
+					queue.push({w, TimestampedValue(tentativeGScore + heuristic(w, m_endPos), time++)});
+					m_opened[v].push_back(w);
+				}
+			}
+		}
+
 
     /* If end was not found, then return */
     if (predecessor.find(m_endPos) == predecessor.end())

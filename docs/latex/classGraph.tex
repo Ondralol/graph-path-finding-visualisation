@@ -1,0 +1,145 @@
+\hypertarget{classGraph}{}\doxysection{Graph Class Reference}
+\label{classGraph}\index{Graph@{Graph}}
+
+
+{\ttfamily \#include $<$graph.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGraph_a700ed0723c23c7f1707924f138d84397}{Graph}} (\mbox{\hyperlink{graph_8hpp_acfb661ce1e726f87934325474a753c6f}{Search\+Algorithm\+Type}} algo\+Type, const std\+::string file\+Path)
+\item 
+void \mbox{\hyperlink{classGraph_a3ac10411991ae0cbc64f7c737d9f3c25}{show\+Graph\+ASCII}} (void)
+\item 
+void \mbox{\hyperlink{classGraph_a9bbcbaa66e6811d0658209be32cb9c4f}{path\+Info}} (void)
+\item 
+void \mbox{\hyperlink{classGraph_a52d6258e7ba50c4a1582392365fca28b}{reset}} (void)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{graph_8hpp_a8faac095f04735496f9200893ebe93cf}{Position}} $>$ \mbox{\hyperlink{classGraph_ad9208c1b70485be5632c0badee074f1a}{Adjacent}} (\mbox{\hyperlink{graph_8hpp_a8faac095f04735496f9200893ebe93cf}{Position}} v)
+\item 
+void \mbox{\hyperlink{classGraph_a28851041bc4d86dbc87b55e6e44fe27d}{BFS}} (void)
+\item 
+void \mbox{\hyperlink{classGraph_affc6e8ccb1a971075e9b91cf5cdd8128}{DFS}} (void)
+\item 
+void \mbox{\hyperlink{classGraph_a1489edb72fe3ee86d20bc93816df9346}{Random\+Search}} (void)
+\item 
+void \mbox{\hyperlink{classGraph_adc756acd8cce5f1fe43a7690ee2befa6}{Greedy\+Search}} (void)
+\item 
+void \mbox{\hyperlink{classGraph_a7b86bd7709865e257ef6f364536f5c9b}{AStar}} (void)
+\item 
+void \mbox{\hyperlink{classGraph_a3726275aeec3b5b6f6b58240203b4cb6}{set\+Up}} (int state)
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classGraph_aeb4aa52b0d74b7a080cbe5a4f895f462}{Graph\+Visualisation}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGraph_a700ed0723c23c7f1707924f138d84397}\label{classGraph_a700ed0723c23c7f1707924f138d84397}} 
+\index{Graph@{Graph}!Graph@{Graph}}
+\index{Graph@{Graph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{Graph()}{Graph()}}
+{\footnotesize\ttfamily Graph\+::\+Graph (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{graph_8hpp_acfb661ce1e726f87934325474a753c6f}{Search\+Algorithm\+Type}}}]{algo\+Type,  }\item[{const std\+::string}]{file\+Path }\end{DoxyParamCaption})}
+
+Constructor
+
+Parses input file and creates graph, throws exception if maze file not found 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGraph_ad9208c1b70485be5632c0badee074f1a}\label{classGraph_ad9208c1b70485be5632c0badee074f1a}} 
+\index{Graph@{Graph}!Adjacent@{Adjacent}}
+\index{Adjacent@{Adjacent}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{Adjacent()}{Adjacent()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{graph_8hpp_a8faac095f04735496f9200893ebe93cf}{Position}} $>$ Graph\+::\+Adjacent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{graph_8hpp_a8faac095f04735496f9200893ebe93cf}{Position}}}]{v }\end{DoxyParamCaption})}
+
+Finds all adjacent position where can you move in the graph
+
+Finds all adjacent vertices/positions \mbox{\Hypertarget{classGraph_a7b86bd7709865e257ef6f364536f5c9b}\label{classGraph_a7b86bd7709865e257ef6f364536f5c9b}} 
+\index{Graph@{Graph}!AStar@{AStar}}
+\index{AStar@{AStar}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{AStar()}{AStar()}}
+{\footnotesize\ttfamily void Graph\+::\+AStar (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Implementation of AStar algorithm
+
+Implementation of A$\ast$ algorithm using L2 norm, saves the visited and opened vertices as well as path \mbox{\Hypertarget{classGraph_a28851041bc4d86dbc87b55e6e44fe27d}\label{classGraph_a28851041bc4d86dbc87b55e6e44fe27d}} 
+\index{Graph@{Graph}!BFS@{BFS}}
+\index{BFS@{BFS}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{BFS()}{BFS()}}
+{\footnotesize\ttfamily void Graph\+::\+BFS (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Implementation of BFS algorithm
+
+Implementation of DFS algorithm, saves the visited and opened vertices as well as path \mbox{\Hypertarget{classGraph_affc6e8ccb1a971075e9b91cf5cdd8128}\label{classGraph_affc6e8ccb1a971075e9b91cf5cdd8128}} 
+\index{Graph@{Graph}!DFS@{DFS}}
+\index{DFS@{DFS}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{DFS()}{DFS()}}
+{\footnotesize\ttfamily void Graph\+::\+DFS (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Implementation of DFS algorithm
+
+Implementation of DFS algorithm, saves the visited and opened vertices as well as path \mbox{\Hypertarget{classGraph_adc756acd8cce5f1fe43a7690ee2befa6}\label{classGraph_adc756acd8cce5f1fe43a7690ee2befa6}} 
+\index{Graph@{Graph}!GreedySearch@{GreedySearch}}
+\index{GreedySearch@{GreedySearch}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{GreedySearch()}{GreedySearch()}}
+{\footnotesize\ttfamily void Graph\+::\+Greedy\+Search (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Implementation of Greedy\+Search algorithm
+
+Implementation of Greedy algorithm using L2 Norm, saves the visited and opened vertices as well as path \mbox{\Hypertarget{classGraph_a9bbcbaa66e6811d0658209be32cb9c4f}\label{classGraph_a9bbcbaa66e6811d0658209be32cb9c4f}} 
+\index{Graph@{Graph}!pathInfo@{pathInfo}}
+\index{pathInfo@{pathInfo}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{pathInfo()}{pathInfo()}}
+{\footnotesize\ttfamily void Graph\+::path\+Info (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Show path info -\/ opened vertices and path length
+
+Displays path length and how many vertices were opened/visited \mbox{\Hypertarget{classGraph_a1489edb72fe3ee86d20bc93816df9346}\label{classGraph_a1489edb72fe3ee86d20bc93816df9346}} 
+\index{Graph@{Graph}!RandomSearch@{RandomSearch}}
+\index{RandomSearch@{RandomSearch}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{RandomSearch()}{RandomSearch()}}
+{\footnotesize\ttfamily void Graph\+::\+Random\+Search (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Implementation of Random\+Search algorithm
+
+Implementation of random search algorithm, saves the visited and opened vertices as well as path \mbox{\Hypertarget{classGraph_a52d6258e7ba50c4a1582392365fca28b}\label{classGraph_a52d6258e7ba50c4a1582392365fca28b}} 
+\index{Graph@{Graph}!reset@{reset}}
+\index{reset@{reset}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void Graph\+::reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Resets graph -\/ clears all vectors and maps that need to be cleared
+
+Clears containers used to store graph paths etc. \mbox{\Hypertarget{classGraph_a3726275aeec3b5b6f6b58240203b4cb6}\label{classGraph_a3726275aeec3b5b6f6b58240203b4cb6}} 
+\index{Graph@{Graph}!setUp@{setUp}}
+\index{setUp@{setUp}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{setUp()}{setUp()}}
+{\footnotesize\ttfamily void Graph\+::set\+Up (\begin{DoxyParamCaption}\item[{int}]{state }\end{DoxyParamCaption})}
+
+Sets up things
+
+Set up things \mbox{\Hypertarget{classGraph_a3ac10411991ae0cbc64f7c737d9f3c25}\label{classGraph_a3ac10411991ae0cbc64f7c737d9f3c25}} 
+\index{Graph@{Graph}!showGraphASCII@{showGraphASCII}}
+\index{showGraphASCII@{showGraphASCII}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{showGraphASCII()}{showGraphASCII()}}
+{\footnotesize\ttfamily void Graph\+::show\+Graph\+ASCII (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Shows graph in ascii
+
+Displays graph in STDOUT 
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classGraph_aeb4aa52b0d74b7a080cbe5a4f895f462}\label{classGraph_aeb4aa52b0d74b7a080cbe5a4f895f462}} 
+\index{Graph@{Graph}!GraphVisualisation@{GraphVisualisation}}
+\index{GraphVisualisation@{GraphVisualisation}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{GraphVisualisation}{GraphVisualisation}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{classGraphVisualisation}{Graph\+Visualisation}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+Class used for visualisation 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{graph_8hpp}{graph.\+hpp}}\item 
+src/\mbox{\hyperlink{graph_8cpp}{graph.\+cpp}}\end{DoxyCompactItemize}

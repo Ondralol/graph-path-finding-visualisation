@@ -86,4 +86,5 @@ private:
 
     /** Stores path that the algorithm found */
     std::vector<Position> m_path;
+		
 };
