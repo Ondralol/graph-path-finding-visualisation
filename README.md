@@ -20,7 +20,7 @@ to find path between to poins. The following algorithms are supported:
 - **Pathfinding algorithms:** Allows the selection of different algorithms to find path in the graph
 - **2D Visualisation:** Visualisation of the graph and all visited and opened vertices as well as the 
 path that was found
-- **Interactive controls:** You can control the visualisation with the following featrues:
+- **Interactive controls:** You can control the visualisation with the following features:
     - **Adjust speed**: Change the speed of visualisation to match your preference
     - **Pause/Resume:** Pause the visualisation at any time
     - **Algorithm Change:** Simply switch between different algorithms
