@@ -1,6 +1,6 @@
 CC=g++
 LD=$(CC)
-CFLAGS =-std=c++20 -Wall -pedantic -fsanitize=undefined -g
+CFLAGS =-std=c++20 -Wall -pedantic -g
 SOURCE=src
 
 SFML_INCLUDE = /usr/include/SFML #Change file path accordingly
