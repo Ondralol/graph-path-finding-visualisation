@@ -16,7 +16,7 @@ to find path between to poins. The following algorithms are supported:
 </div>
 
 ## Features
-- **Graph Parsing:** The programm can read and parse graphs from a text file
+- **Graph Parsing:** The program can read and parse graphs from a text file
 - **Pathfinding algorithms:** Allows the selection of different algorithms to find path in the graph
 - **2D Visualisation:** Visualisation of the graph and all visited and opened vertices as well as the 
 path that was found
