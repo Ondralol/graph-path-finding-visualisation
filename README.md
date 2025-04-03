@@ -27,7 +27,7 @@ path that was found
     - **Reset/Loop:** Reset or loop the visualisation 
 
 ## Requirements
-- You need to install the SFML library to build and run the program
+- You need to install the SFML library (SFML DEV) to build and run the program
   https://www.sfml-dev.org/download/ 
 - After installing SFML, you may need to change the library path in Makefile accordingly (change the SFML_INCLUDE and SFML_LIB)
 
